@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <Windows.h>
 #include <TlHelp32.h>
@@ -10,7 +11,7 @@ private:
     HANDLE hProcess;
 
 public:
-    uintptr_t baseAddr;
+    uintptr_t baseAddr = 0x57E0A8;
     Memory(const wchar_t* processName) {
 
         this->pid = GetProcId(processName);
@@ -25,7 +26,6 @@ public:
         } else {
             cout << "Processo nao encontrado" << endl;
         }
-        this->baseAddr = 0x57E0A8;
     }
 
     ~Memory() {
@@ -35,7 +35,7 @@ public:
     }
     template <typename T>
     T Read(uintptr_t adress) {
-        T value;
+        T value ={};
         ReadProcessMemory(this->hProcess, (LPVOID) adress, &value, sizeof(T), NULL);
         return value;
     }
