@@ -10,7 +10,7 @@ public:
         this->hpOffset = hpOffset;
         this->hpAddr = baseAddr + hpOffset;
     }
-
+asdasfasfa
     void* setVida(uintptr_t hpAddr, int hpChange) {
         WriteProcessMemory(this->hProcess, (LPVOID)hpAddr, hpChange, sizeof(int), NULL);
     }
