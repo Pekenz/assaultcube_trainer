@@ -1,6 +1,7 @@
 #include <iostream>
 #include "godmode.h"
 #include "Memory.h"
+#include "killall.h"
 
 using namespace std;
 
@@ -15,22 +16,37 @@ int main() {
     // Ai aqui criamos o GodMode e passamos o objeto de Memory dentro dele
     godmode vidaInfinita(mem);
 
+    killall matarTodos(mem);
     // E depois é só chamar a "ativar" que criamos dentro d godmode.h
     //vidaInfinita.ativar();
 
     // NUMPAD 1 ativa, NUMPAD2 desativa (quebra o loop)
+
+    cout << "Trainer Iniciado." << endl;
+    cout << "[NUMPAD 1] - Ativar GODMODE (NUMPAD2 para parar)" << endl;
+    cout << "[NUMPAD 8] - Matar GERAL" << endl;
+    cout << "[NUMPAD 9] - Sair fora" << endl;
     while (true) {
         if (GetAsyncKeyState(VK_NUMPAD1)) {
             while (true) {
                 vidaInfinita.ativar();
                 Sleep(10);
                 if (GetAsyncKeyState(VK_NUMPAD2)) {
-                    goto end_godmode;
+                    break;
                 }
             }
         }
-        Sleep(100);
+
+        if (GetAsyncKeyState(VK_NUMPAD8)) {
+            matarTodos.ativar();
+            Sleep(1000);
+        }
+
+        if (GetAsyncKeyState(VK_NUMPAD9)) {
+            return 0;
+        }
+
+
     }
-    end_godmode:
-        return 0;
+
 }

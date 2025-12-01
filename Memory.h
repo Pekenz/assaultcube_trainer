@@ -11,7 +11,11 @@ private:
     HANDLE hProcess;
 
 public:
+
+    uintptr_t gameBaseAddr = 0x400000;
+    uintptr_t entityListOffset = 0x591FCC;
     uintptr_t baseAddr = 0x57E0A8;
+
     Memory(const wchar_t* processName) {
 
         this->pid = GetProcId(processName);

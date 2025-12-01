@@ -8,8 +8,28 @@ private:
 
     Memory& mem; // Aqui é pra guardar uma referência ao objeto Memory original, é a própria injeção de dependência
     uintptr_t hpOffset = 0xEC;
-     int hpChange = 1337;
+    uintptr_t armorOffset = 0xF0;
+    uintptr_t pAmmoOffset = 0x12C;
+    uintptr_t pMagOffset = 0x108;
+    uintptr_t granadeOffset = 0x144;
+    uintptr_t dpAmmoOffset = 0x148;
+    uintptr_t cAmmoOffset = 0x140;
+    uintptr_t dpMagOffset = 0x124;
+    uintptr_t cMagOffset = 0x11C;
+    uintptr_t ttrCOffset = 0x164;
+    uintptr_t ttrPOffset = 0x150;
 
+    int dpMagChange = 1337;
+    int pAmmoChange = 1337;
+    int pMagChange = 1337;
+    int granadeChange = 1337;
+    int dpAmmoChange = 1337;
+    int hpChange = 1337;
+    int armorChange = 1337;
+    int cAmmoChange = 1337;
+    int cMagChange = 1337;
+    int ttrCChange = 1;
+    int ttrPChange = 1;
 public:
     // Depois de guardar a referência, o construtor vai EXIGIR um objeto Memory
     godmode(Memory& memoryTool) : mem(memoryTool) {
@@ -52,9 +72,31 @@ public:
             // Calculando o endereço da vida atual, que é basicamente o addrbase + offset
             // guarda dentro do currentHpAddr e depois usa pra escrever
             uintptr_t currentHpAddr = addrLido + this->hpOffset;
+            uintptr_t currentArmorAddr = addrLido + this->armorOffset;
+            uintptr_t currentPAmmoAddr = addrLido + this->pAmmoOffset;
+            uintptr_t currentPMagAddr = addrLido + this->pMagOffset;
+            uintptr_t currentGranadeAddr = addrLido + this->granadeOffset;
+            uintptr_t currentpDpAmmoAddr = addrLido + this->dpAmmoOffset;
+            uintptr_t currentCAmmoAddr = addrLido + this->cAmmoOffset;
+            uintptr_t currentdpMagAddr = addrLido + this->dpMagOffset;
+            uintptr_t currentcMagAddr = addrLido + this->cMagOffset;
+            uintptr_t currentttrCAddr = addrLido + this->ttrCOffset;
+            uintptr_t currentttrPAddr = addrLido + this->ttrPOffset;
+
 
             // E como já guardamos a referência de Memory lá no private, é só usar ela:
             mem.Write<int>(currentHpAddr, this->hpChange);
+            mem.Write<int>(currentArmorAddr, this->armorChange);
+            mem.Write<int>(currentPAmmoAddr, this->pAmmoChange);
+            mem.Write<int>(currentPMagAddr, this->pMagChange);
+            mem.Write<int>(currentGranadeAddr, this->granadeChange);
+            mem.Write<int>(currentpDpAmmoAddr, this->dpAmmoChange);
+            mem.Write<int>(currentCAmmoAddr, this->cAmmoChange);
+            mem.Write<int>(currentdpMagAddr, this->dpMagChange);
+            mem.Write<int>(currentcMagAddr, this->cMagChange);
+            mem.Write<int>(currentttrCAddr, this->ttrCChange);
+            mem.Write<int>(currentttrPAddr, this->ttrPChange);
+
         }
     }
 

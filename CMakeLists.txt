@@ -8,4 +8,6 @@ add_executable(ac_trainer_coded main.cpp
         Memory.h
         godmode.cpp
         godmode.h
+        killall.cpp
+        killall.h
 )
